@@ -1,6 +1,6 @@
 # Webhooks
 
-Webhooks enables you to integrate Plexus gateway to external systems to update your Salesforce, Slack, calendar or even create a payment draft in Xero. Imagination is your limit.
+Webhooks enables you to integrate Plexus gateway to external systems such as updating your Salesforce, Slack, calendar or even create a payment draft in Xero. Imagination is your limit.
 
 When an event happens, we will send a HTTP POST request to your configured endpoint.
 
@@ -110,7 +110,7 @@ import hmac
 import hashlib
 
 def verify_signature(payload_body, signature, secret_token):
-    return hmac.compare(
+    return hmac.compare_digest(
         signature,
         hmac.new(
             key=secret_token,
@@ -120,11 +120,11 @@ def verify_signature(payload_body, signature, secret_token):
     )
 ```
 
-Note that using `==` is not advised, which is vulnerable to timing analysis. Please use a constant time secure comparison in your language similar to `hamc.compare`.
+Note that using `==` is not advised, which is vulnerable to timing analysis. Please use a constant time secure comparison in your language similar to [`hamc.compare_digest`](https://docs.python.org/3/library/hmac.html#hmac.compare_digest).
 
 ## Technical details
 
-We don’t 100% guarantee the events are sent in order, but we do have a `ceratedAt` timestamp on all the events.
+We don’t 100% guarantee the events are sent in order, but we do have a `createdAt` timestamp on all the events.
 
 When an event fails to be sent to your endpoint, we retry a few times. TODO ????
 
