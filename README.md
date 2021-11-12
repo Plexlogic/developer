@@ -2,7 +2,7 @@
 
 ![GitHub Pages](https://github.com/Plexlogic/developer/actions/workflows/gh_pages.yml/badge.svg)
 
-This is the source code for <developer.plexus.co>.
+This is the source code for [developer.plexus.co](https://developer.plexus.co).
 
 It uses MkDocs and [MkDocs](https://www.mkdocs.org/) and [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/).
 
