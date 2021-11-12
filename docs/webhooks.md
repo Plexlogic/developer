@@ -8,7 +8,7 @@ When an event happens, we will send a HTTP POST request to your configured endpo
 
 Start configuring your webhook endpoint by contacting our Customer Success team.
 
-Just tell us the event types you want to subscribe and your endpoint(s). We will give you a secret token for each subscription or you can specify your own.
+Just tell us the [event types](#events) you want to subscribe and your endpoint(s). We will give you a secret token for each subscription or you can specify your own.
 
 ## Events
 
@@ -33,7 +33,7 @@ An example of the event payload:
 }
 ```
 
-### Document events types
+### Document event types
 
 1. `DOCUMENT_CREATED`
 2. `DOCUMENT_UPDATED`
