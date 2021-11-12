@@ -1,0 +1,18 @@
+site_name: Plexus Developer
+
+theme:
+  name: material
+
+# Strict mode, exit on warning
+strict: true
+
+# Hide edit button
+edit_uri: ''
+
+# Code highlighting
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.snippets
+  - admonition
