@@ -8,6 +8,6 @@ It uses MkDocs and [MkDocs](https://www.mkdocs.org/) and [Material for MkDocs](h
 
 GitHub Actions is configured to publish `main` automatically.
 
-To develop locally, just run `mkdocs serve --dev-addr localhost:8888`.
+You can edit the content directly in <https://github.dev/Plexlogic/developer> or by clicking <kbd>.</kbd> in the [GitHub repository](https://github.com/Plexlogic/developer).
 
-You can also edit the content directly in <https://github.dev/Plexlogic/developer> or by clicking <kbd>.</kbd> in the GitHub repository.
+To develop locally, just run `mkdocs serve --dev-addr localhost:8888` or launch VS Code in dev container (`.devcontainer` configured).
