@@ -98,24 +98,24 @@ Document event types share the same payload format.
 
 #### Document status
 
-Webhook document event status is different from the status in Plexus Gateway, the mapping is shown in the table below. Note that some Gateway statuses are legacy ones (e.g. Amended) for old documents.
+Webhook document event status is different from the status in Plexus Gateway, the mapping is shown in the table below.
 
-The mapping is for easier linking and understanding of the status in the webhook and the status shown in the Gateway. Note that although we try to maintain the status and mapping, we might decide to change to mapping but we will maintain the webhook status. You may not rely on the mapping programmatically.
+The mapping table here is for easier linking and understanding of the status in the webhook and the status shown in the Gateway. Note that although we try to maintain the status and mapping, we might decide to change the mapping but we will maintain the webhook status. You may not rely on the mapping programmatically.
 
 | Webhook document status | Gateway status(es) |
 | --- | --- |
 | `created` | Authored |
 | `awaitingReview` | Requires review, Flagged, In review |
-| `reviewRejected` | Review rejected |
 | `reviewApproved` | Approved |
+| `reviewRejected` | Review rejected |
 | `awaitingApproval` | Awaiting approval |
-| `approvalRejected` | Approval rejected |
 | `approved` | Completed |
+| `approvalRejected` | Approval rejected |
 | `awaitingSignature` | Awaiting signature |
-| `signatureRejected` | Signing rejected |
-| `executed` | Executed |
 | `signedByClient` | Client signed |
+| `signatureRejected` | Signing rejected |
 | `signatureRequestExpired` | Voided |
+| `executed` | Executed |
 | `paused` | Paused |
 | `cancelled` | Cancelled |
 | `other` | Deleted, Amended, Updated, Other |
@@ -145,7 +145,7 @@ def verify_signature(payload_body, signature, secret_token):
     )
 ```
 
-Note that using `==` is not advised, which is vulnerable to timing analysis. Please use a constant time secure comparison in your language similar to [`hamc.compare_digest`](https://docs.python.org/3/library/hmac.html#hmac.compare_digest).
+Note that using `==` is **not recommended**, which is vulnerable to timing analysis. Please use a constant time secure comparison in your language similar to [`hamc.compare_digest`](https://docs.python.org/3/library/hmac.html#hmac.compare_digest).
 
 ## Technical details
 
