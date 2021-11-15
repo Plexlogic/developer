@@ -95,6 +95,30 @@ Document event types share the same payload format.
 }
 ```
 
+#### Document status
+
+Webhook document event status is different from the status in Plexus gateway, the mapping is shown in the table below. Note that some gateway statuses are legacy ones (e.g. Amended) for old documents.
+
+The mapping is for easier linking and understanding of the status in the webhook and the status shown in the gateway. Note that although we try to maintain the status and mapping, we might decide to change to mapping but we will maintain the webhook status. You may not rely on the mapping programmatically.
+
+| Webhook document status | Gateway status(es) |
+| --- | --- |
+| `created` | Authored |
+| `awaitingReview` | Requires review, Flagged, In review |
+| `reviewRejected` | Review rejected |
+| `reviewApproved` | Approved |
+| `awaitingApproval` | Awaiting approval |
+| `approvalRejected` | Approval rejected |
+| `approved` | Completed |
+| `awaitingSignature` | Awaiting signature |
+| `signatureRejected` | Signing rejected |
+| `executed` | Executed |
+| `signedByClient` | Client signed |
+| `signatureRequestExpired` | Voided |
+| `paused` | Paused |
+| `cancelled` | Cancelled |
+| `other` | Deleted, Amended, Updated, Other |
+
 ## Security
 
 The endpoint receiving webhook events must be HTTPS.
@@ -128,6 +152,3 @@ We don’t 100% guarantee the events are sent in order, but we do have a `create
 
 When an event fails to be sent to your endpoint, we retry a few times. TODO ????
 
-## Status mapping
-
-TODO
