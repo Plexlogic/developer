@@ -3,16 +3,26 @@ site_name: Plexus Developer
 theme:
   name: material
 
+copyright: Copyright &copy; Plexus
+
 # Strict mode, exit on warning
 strict: true
 
 # Hide edit button
 edit_uri: ''
 
-# Code highlighting
 markdown_extensions:
+  # Code highlighting
   - pymdownx.highlight
   - pymdownx.inlinehilite
   - pymdownx.superfences
   - pymdownx.snippets
+
+
   - admonition
+
+  - toc:
+      permalink: true
+
+extra:
+  generator: false
