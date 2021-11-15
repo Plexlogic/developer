@@ -1,14 +1,14 @@
 # Webhooks
 
-Webhooks enables you to integrate Plexus Gateway to external systems such as updating your Salesforce, Slack, calendar or even create a payment draft in Xero. Imagination is your limit.
+Webhooks enables you to integrate Plexus Gateway to external systems, such as updating your Salesforce, Slack, calendar, or even creating a payment draft in Xero. Imagination is your limit.
 
-When an event happens, we will send a HTTP POST request to your configured endpoint.
+When an event happens, we will send an HTTP POST request to your configured endpoint.
 
 ## Get started
 
 Start configuring your webhook endpoint by contacting our Customer Success team.
 
-Just tell us the [event types](#events) you want to subscribe and your endpoint(s). We will give you a secret token for each subscription or you can specify your own.
+Just tell us the [event types](#events) you want to subscribe to and your endpoint(s). We will give you a secret token for each subscription, or you can specify your own.
 
 ## Events
 
@@ -79,7 +79,7 @@ Document event types share the same payload format.
         // This URL is valid for 15 minutes from the event creation (`createdAt`)
         "downloadUrl": "https://legalgateway-local.s3.amazonaws.com:443/media/documents/2499/Contract_2JS9d2q.docx"
       },
-      // Additional document facts, these can be seen in the Document Facts tab in a document page
+      // Additional document facts which can be seen in the Document Facts tab on a document page
       "additionalFacts": {
         "customFact1": "abc",
         "customFact1": "123",
@@ -98,9 +98,9 @@ Document event types share the same payload format.
 
 #### Document status
 
-Webhook document event status is different from the status in Plexus Gateway, the mapping is shown in the table below.
+Webhook document event status is different from the status in Plexus Gateway. The mapping is shown in the table below.
 
-The mapping table here is for easier linking and understanding of the status in the webhook and the status shown in the Gateway. Note that although we try to maintain the status and mapping, we might decide to change the mapping but we will maintain the webhook status. You may not rely on the mapping programmatically.
+The mapping table here is for easier linking and understanding of the status in the webhook and the status shown in the Gateway. Note that although we try to maintain the status and mapping, we might decide to change the mapping, but we will maintain the webhook status. You may not rely on the mapping programmatically.
 
 | Webhook document status | Gateway status(es) |
 | --- | --- |
@@ -124,9 +124,9 @@ The mapping table here is for easier linking and understanding of the status in 
 
 The endpoint receiving webhook events must be HTTPS.
 
-Webhooks are protected by hash signatures. Each subscription has a secret token and each event includes a header `plexus-webhook-signature`, which is a HMAC hex digest of the payload calculated with the secret token using SHA512.
+Webhooks are protected by hash signatures. Each subscription has a secret token, and each event includes a header `plexus-webhook-signature` - an HMAC hex digest of the payload calculated with the secret token using SHA512.
 
-You should always verify the webhook event payload using this signature, this ensures that the message is sent by Plexus Gateway and the payload is not tempered. You might also want to check the event `createdAt` to prevent replay attack.
+Please remember to verify the webhook event payload using this signature. This ensures that the message is sent by Plexus Gateway and the payload is not tempered. You might also want to check the event `createdAt` to prevent replay attacks.
 
 Example Python code verifying the payload:
 
@@ -149,6 +149,6 @@ Note that using `==` is **not recommended**, which is vulnerable to timing analy
 
 ## Technical details
 
-- We don’t 100% guarantee the events are sent in order, but we do have a `createdAt` timestamp on all the events.
-- For each POST request for an event, we have a 5 second timeout.
-- When an event fails to be sent to your endpoint, we retry three times every 2 seconds.
+- We provide a loose capability that attempts to preserve the order of messages. However, receiving messages in the exact order they are sent is not guaranteed. Use the `createdAt` timestamp field on all the events to determine the order.
+- For each POST request for an event, we have a 5-second timeout.
+- If an event cannot be sent to your endpoint, we will retry 3 times before giving up.
