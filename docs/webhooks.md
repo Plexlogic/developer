@@ -105,7 +105,7 @@ The mapping table here is for easier linking and understanding of the status in 
 | Webhook document status | Gateway status(es) |
 | --- | --- |
 | `created` | Authored |
-| `awaitingReview` | Requires review, Flagged, In review |
+| `awaitingReview` | <ul><li>Requires review</li><li>Flagged</li><li>In review</li></ul> |
 | `reviewApproved` | Approved |
 | `reviewRejected` | Review rejected |
 | `awaitingApproval` | Awaiting approval |
@@ -118,7 +118,7 @@ The mapping table here is for easier linking and understanding of the status in 
 | `executed` | Executed |
 | `paused` | Paused |
 | `cancelled` | Cancelled |
-| `other` | Deleted, Amended, Updated, Other |
+| `other` | <ul><li>Deleted</li><li>Amended</li><li>Updated</li><li>Other</li></ul> |
 
 ## Security
 
