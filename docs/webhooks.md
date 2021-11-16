@@ -16,12 +16,10 @@ You can subscribe to certain event types or all of them.
 
 Each event is sent as a POST request to your HTTPS endpoint.
 
-An example of the event payload:
-
-```json
+```json title="Event payload example"
 {
   "id": "8cfa669c-41cc-412c-858d-0374e2c007fc",
-  "type": "DOCUMENT_UPDATED",
+  "type": "documentUpdated",
   "createdAt": "2021-11-11T22:39:59.250174+00:00",
   "data": {
     // ...
@@ -33,7 +31,7 @@ An example of the event payload:
 | --- | --- |
 | `id` | Event UUID. |
 | `type` | Event type. |
-| <span id="event-created-at">`createdAt`</span> | Event creation time, all timestamps are in ISO8601 format (UTC). |
+| <span id="event-created-at">`createdAt`</span> | Event creation time. All timestamps are in ISO8601 format (UTC). |
 | `data` | `data` section is specific to each event type. |
 
 ### Document event types
@@ -44,44 +42,129 @@ An example of the event payload:
 
 Document event types share the same payload format.
 
-```json
-{
-  "id": "8cfa669c-41cc-412c-858d-0374e2c007fc",
-  "type": "DocumentUpdated",
-  "createdAt": "2021-11-11T22:39:59.250174+00:00",
-  "data": {
-    "document": {
-      "type": "Service Agreement",
-      "title": "Service Agreement for Company A",
-      "status": "awaitingReview",
-      "createdAt": "2021-09-02T04:37:56.812919+00:00",
-      "sourceApp": "Approve and eSign",
-      "startDate": "2021-11-25",
-      "executedAt": null,
-      "expiryDate": "2021-11-27T13:00:00+00:00",
-      "externalId": "d24c0644-1d31-47fa-960e-b0cc8b4f136c",
-      "ownerEmail": "owner@example.com",
-      "authorEmail": "author@example.com",
-      "referenceId": null,
-      "contractValue": 0.0,
-      "latestVersion": {
-        "number": "7.1",
-        "downloadUrl": "https://legalgateway-local.s3.amazonaws.com:443/media/documents/2499/Contract_2JS9d2q.docx?..."
-      },
-      "additionalFacts": {
-        "customFact1": "abc",
-        "customFact1": "123",
-        "currency": "AUD"
-      },
-      "counterpartyName": "Company A",
-      "publishedVersion": {
-        "number": "7.0",
-        "downloadUrl": "https://legalgateway-local.s3.amazonaws.com:443/media/documents/2499/Contract_4JF72sf.docx?..."
+
+=== "`documentCreated`"
+
+    ```json
+    {
+      "id": "8cfa669c-41cc-412c-858d-0374e2c007fc",
+      "type": "documentCreated",
+      "createdAt": "2021-11-11T22:39:59.250174+00:00",
+      "data": {
+        "document": {
+          "type": "Service Agreement",
+          "title": "Service Agreement for Company A",
+          "status": "created",
+          "createdAt": "2021-09-02T04:37:56.812919+00:00",
+          "sourceApp": "Approve and eSign",
+          "startDate": "2021-11-25",
+          "executedAt": null,
+          "expiryDate": "2021-11-27T13:00:00+00:00",
+          "externalId": "d24c0644-1d31-47fa-960e-b0cc8b4f136c",
+          "ownerEmail": "owner@example.com",
+          "authorEmail": "author@example.com",
+          "referenceId": null,
+          "contractValue": 0.0,
+          "latestVersion": {
+            "number": "7.1",
+            "downloadUrl": "https://legalgateway-local.s3.amazonaws.com:443/media/documents/2499/Contract_2JS9d2q.docx?..."
+          },
+          "additionalFacts": {
+            "customFact1": "abc",
+            "customFact1": "123",
+            "currency": "AUD"
+          },
+          "counterpartyName": "Company A",
+          "publishedVersion": {
+            "number": "7.0",
+            "downloadUrl": "https://legalgateway-local.s3.amazonaws.com:443/media/documents/2499/Contract_4JF72sf.docx?..."
+          }
+        }
       }
     }
-  }
-}
-```
+    ```
+
+=== "`documentUpdated`"
+
+    ```json
+    {
+      "id": "8cfa669c-41cc-412c-858d-0374e2c007fc",
+      "type": "documentUpdated",
+      "createdAt": "2021-11-11T22:39:59.250174+00:00",
+      "data": {
+        "document": {
+          "type": "Service Agreement",
+          "title": "Service Agreement for Company A",
+          "status": "awaitingReview",
+          "createdAt": "2021-09-02T04:37:56.812919+00:00",
+          "sourceApp": "Approve and eSign",
+          "startDate": "2021-11-25",
+          "executedAt": null,
+          "expiryDate": "2021-11-27T13:00:00+00:00",
+          "externalId": "d24c0644-1d31-47fa-960e-b0cc8b4f136c",
+          "ownerEmail": "owner@example.com",
+          "authorEmail": "author@example.com",
+          "referenceId": null,
+          "contractValue": 0.0,
+          "latestVersion": {
+            "number": "7.1",
+            "downloadUrl": "https://legalgateway-local.s3.amazonaws.com:443/media/documents/2499/Contract_2JS9d2q.docx?..."
+          },
+          "additionalFacts": {
+            "customFact1": "abc",
+            "customFact1": "123",
+            "currency": "AUD"
+          },
+          "counterpartyName": "Company A",
+          "publishedVersion": {
+            "number": "7.0",
+            "downloadUrl": "https://legalgateway-local.s3.amazonaws.com:443/media/documents/2499/Contract_4JF72sf.docx?..."
+          }
+        }
+      }
+    }
+    ```
+
+=== "`documentDeleted`"
+
+    ```json
+    {
+      "id": "8cfa669c-41cc-412c-858d-0374e2c007fc",
+      "type": "documentDeleted",
+      "createdAt": "2021-11-11T22:39:59.250174+00:00",
+      "data": {
+        "document": {
+          "type": "Service Agreement",
+          "title": "Service Agreement for Company A",
+          "status": "other",
+          "createdAt": "2021-09-02T04:37:56.812919+00:00",
+          "sourceApp": "Approve and eSign",
+          "startDate": "2021-11-25",
+          "executedAt": null,
+          "expiryDate": "2021-11-27T13:00:00+00:00",
+          "externalId": "d24c0644-1d31-47fa-960e-b0cc8b4f136c",
+          "ownerEmail": "owner@example.com",
+          "authorEmail": "author@example.com",
+          "referenceId": null,
+          "contractValue": 0.0,
+          "latestVersion": {
+            "number": "7.1",
+            "downloadUrl": "https://legalgateway-local.s3.amazonaws.com:443/media/documents/2499/Contract_2JS9d2q.docx?..."
+          },
+          "additionalFacts": {
+            "customFact1": "abc",
+            "customFact1": "123",
+            "currency": "AUD"
+          },
+          "counterpartyName": "Company A",
+          "publishedVersion": {
+            "number": "7.0",
+            "downloadUrl": "https://legalgateway-local.s3.amazonaws.com:443/media/documents/2499/Contract_4JF72sf.docx?..."
+          }
+        }
+      }
+    }
+    ```
 
 **`document`**
 
@@ -90,7 +173,7 @@ Document event types share the same payload format.
 | `type` | Document type. |
 | `title` | Document title. |
 | `status` | [Document status](#document-status). |
-| `createAt` | Document creation timestamp. |
+| `createdAt` | Document creation timestamp. |
 | `sourceApp` | Application that created this document. |
 | `startDate` | Start date specified in applications (e.g. Approve and eSign). |
 | `executedAt` | Executed timestamp, null means it is not executed. |
@@ -161,7 +244,8 @@ def verify_signature(payload_body, signature, secret_token):
     )
 ```
 
-Note that using `==` is **not recommended**, which is vulnerable to timing analysis. Please use a constant time secure comparison in your language similar to [`hamc.compare_digest`](https://docs.python.org/3/library/hmac.html#hmac.compare_digest).
+!!! info "Note"
+    Using `==` is **not recommended**, which is vulnerable to timing analysis. Please use a constant time secure comparison in your language similar to [`hamc.compare_digest`](https://docs.python.org/3/library/hmac.html#hmac.compare_digest).
 
 ## Technical details
 
