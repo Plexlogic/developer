@@ -1,3 +1,262 @@
-# Welcome
+# Webhooks
 
-Welcome to Plexus Developer Portal.
+Plexus Gateway uses webhooks to allow your application to receive information about document events as they occur. You can then choose how your application responds in a variety of ways, or use webhooks to integrate Plexus Gateway with third party systems. Update a lead in Salesforce, send a Slack notification, create a Google Calendar event or create a draft payment in Xero - our extensible framework is here to support any way of working. This documentation will detail configuring webhooks, event types and technological specifications to get you started. 
+
+## Get started
+
+You can start receiving document event notifications in your app by:
+
+1. Identify the events you want to monitor and create your webhook endpoint as an HTTPS endpoint (URL)
+2. Get in touch with your Customer Success Manager
+3. Plexus will then provide you with a secret token for each subscription, or you can specify your own
+
+## Events
+
+You can subscribe to any number of events through webhooks. Each event is sent as a POST request to your HTTPS endpoint. 
+
+Every event payload includes the following event attributes:
+
+| Attribute | Description |
+| --- | --- |
+| `id` | Event UUID |
+| `type` | Event type |
+| <span id="event-created-at">`createdAt`</span> | Event creation time. All timestamps are in ISO8601 format (UTC): `YYYY-MM-DDTHH:MM:SS.ffffff+HH:MM` |
+| `data` | The `data` section varies according to the type of event |
+
+This example outlines their format and structure:
+
+```json title="Event payload example"
+{
+  "id": "8cfa669c-41cc-412c-858d-0374e2c007fc",
+  "type": "documentUpdated",
+  "createdAt": "2021-11-11T22:39:59.250174+00:00",
+  "data": {
+    // ...
+  }
+}
+```
+
+### Document event types
+
+Documents have three event types, each of which will create different content in the data section of the payload:
+
+1. `documentCreated`
+2. `documentUpdated`
+3. `documentDeleted`
+
+### Document attributes
+
+Each event contains additional document attributes:
+
+| Attribute | Description |
+| --- | --- |
+| `type` | Document type |
+| `title` | Document title |
+| `status` | [Document status](#document-status) |
+| `createdAt` | Document creation timestamp |
+| `sourceApp` | The app inside Plexus Gateway that created this document |
+| `startDate` | The start date that was specified when the document was created, or in the facts view tab on the document details page |
+| `executedAt` | The date the document was executed. If the document has not been executed, this field will be null |
+| `expiryDate` | The expiry date that was specified when the document was created, or in the facts view tab on the document details page |
+| `externalId` | UUID created by Plexus Gateway |
+| `ownerEmail` | The document owner’s email address |
+| `authorEmail` | The document author’s email address |
+| `referenceId` | An identifier assigned to the document when it is created with an app inside Plexus Gateway. You can use this referenceId to track the document in your app or another third party system, such as SalesForce |
+| `contractValue` | The monetary value of the document that was specified when the document was created, or in the facts view tab on the document details page |
+| `latestVersion` | The latest version of the document, either published or as a draft |
+| `additionalFacts` | Additional text strings containing information added to the document in the facts view tab on the document details page |
+| `counterpartyName` | Name of the document’s counterparty.  If the document has no counterparty, this field will be null |
+| `publishedVersion` | The latest published version of the document |
+
+The `latestVersion` and `publishedVersion` attributes contain the following sub-attributes:
+
+| Sub-attribute | Description |
+| --- | --- |
+| `number` | Version number |
+| `downloadUrl` | Download URL, valid for 15 minutes from [event creation](#event-created-at) |
+
+### Document status
+
+Webhook document event statuses are different from the statuses in Plexus Gateway. The mapping between each is shown in the table below:
+
+| Webhook document status | Gateway status(es) |
+| --- | --- |
+| `created` | Authored |
+| `awaitingReview` | <ul><li>Requires review</li><li>Flagged</li><li>In review</li></ul> |
+| `reviewApproved` | Approved |
+| `reviewRejected` | Review rejected |
+| `awaitingApproval` | Awaiting approval |
+| `approved` | Completed |
+| `approvalRejected` | Approval rejected |
+| `awaitingSignature` | Awaiting signature |
+| `signedByClient` | Client signed |
+| `signatureRejected` | Signing rejected |
+| `signatureRequestExpired` | Voided |
+| `executed` | Executed |
+| `paused` | Paused |
+| `cancelled` | Cancelled |
+| `other` | <ul><li>Deleted</li><li>Amended</li><li>Updated</li><li>Other</li></ul> |
+
+Note that although we try to maintain the status and mapping, mapping may be updated in the future as part of platform improvements. If mapping does change in the future, webhook status will be maintained so your integrations will not experience any downtime. Mapping should not be relied on programmatically. 
+
+### Bringing it all together
+
+These examples show how all document attributes are formatted in one payload for a document updated event:
+
+=== "`documentCreated`"
+
+    ```json
+    {
+      "id": "8cfa669c-41cc-412c-858d-0374e2c007fc",
+      "type": "documentCreated",
+      "createdAt": "2021-11-11T22:39:59.250174+00:00",
+      "data": {
+        "document": {
+          "type": "Service Agreement",
+          "title": "Service Agreement for Company A",
+          "status": "created",
+          "createdAt": "2021-09-02T04:37:56.812919+00:00",
+          "sourceApp": "Approve and eSign",
+          "startDate": "2021-11-25",
+          "executedAt": null,
+          "expiryDate": "2021-11-27T13:00:00+00:00",
+          "externalId": "d24c0644-1d31-47fa-960e-b0cc8b4f136c",
+          "ownerEmail": "owner@example.com",
+          "authorEmail": "author@example.com",
+          "referenceId": null,
+          "contractValue": 0.0,
+          "latestVersion": {
+            "number": "7.1",
+            "downloadUrl": "https://legalgateway-local.s3.amazonaws.com:443/media/documents/2499/Contract_2JS9d2q.docx?..."
+          },
+          "additionalFacts": {
+            "customFact1": "abc",
+            "customFact1": "123",
+            "currency": "AUD"
+          },
+          "counterpartyName": "Company A",
+          "publishedVersion": {
+            "number": "7.0",
+            "downloadUrl": "https://legalgateway-local.s3.amazonaws.com:443/media/documents/2499/Contract_4JF72sf.docx?..."
+          }
+        }
+      }
+    }
+    ```
+
+=== "`documentUpdated`"
+
+    ```json
+    {
+      "id": "8cfa669c-41cc-412c-858d-0374e2c007fc",
+      "type": "documentUpdated",
+      "createdAt": "2021-11-11T22:39:59.250174+00:00",
+      "data": {
+        "document": {
+          "type": "Service Agreement",
+          "title": "Service Agreement for Company A",
+          "status": "awaitingReview",
+          "createdAt": "2021-09-02T04:37:56.812919+00:00",
+          "sourceApp": "Approve and eSign",
+          "startDate": "2021-11-25",
+          "executedAt": null,
+          "expiryDate": "2021-11-27T13:00:00+00:00",
+          "externalId": "d24c0644-1d31-47fa-960e-b0cc8b4f136c",
+          "ownerEmail": "owner@example.com",
+          "authorEmail": "author@example.com",
+          "referenceId": null,
+          "contractValue": 0.0,
+          "latestVersion": {
+            "number": "7.1",
+            "downloadUrl": "https://legalgateway-local.s3.amazonaws.com:443/media/documents/2499/Contract_2JS9d2q.docx?..."
+          },
+          "additionalFacts": {
+            "customFact1": "abc",
+            "customFact1": "123",
+            "currency": "AUD"
+          },
+          "counterpartyName": "Company A",
+          "publishedVersion": {
+            "number": "7.0",
+            "downloadUrl": "https://legalgateway-local.s3.amazonaws.com:443/media/documents/2499/Contract_4JF72sf.docx?..."
+          }
+        }
+      }
+    }
+    ```
+
+=== "`documentDeleted`"
+
+    ```json
+    {
+      "id": "8cfa669c-41cc-412c-858d-0374e2c007fc",
+      "type": "documentDeleted",
+      "createdAt": "2021-11-11T22:39:59.250174+00:00",
+      "data": {
+        "document": {
+          "type": "Service Agreement",
+          "title": "Service Agreement for Company A",
+          "status": "other",
+          "createdAt": "2021-09-02T04:37:56.812919+00:00",
+          "sourceApp": "Approve and eSign",
+          "startDate": "2021-11-25",
+          "executedAt": null,
+          "expiryDate": "2021-11-27T13:00:00+00:00",
+          "externalId": "d24c0644-1d31-47fa-960e-b0cc8b4f136c",
+          "ownerEmail": "owner@example.com",
+          "authorEmail": "author@example.com",
+          "referenceId": null,
+          "contractValue": 0.0,
+          "latestVersion": {
+            "number": "7.1",
+            "downloadUrl": "https://legalgateway-local.s3.amazonaws.com:443/media/documents/2499/Contract_2JS9d2q.docx?..."
+          },
+          "additionalFacts": {
+            "customFact1": "abc",
+            "customFact1": "123",
+            "currency": "AUD"
+          },
+          "counterpartyName": "Company A",
+          "publishedVersion": {
+            "number": "7.0",
+            "downloadUrl": "https://legalgateway-local.s3.amazonaws.com:443/media/documents/2499/Contract_4JF72sf.docx?..."
+          }
+        }
+      }
+    }
+    ```
+
+### Response order and built-in retries
+
+We provide a loose capability that attempts to preserve the order of messages. However, receiving messages in the exact order they are sent is not guaranteed. Use the createdAt timestamp field on all the events to determine the order.
+
+For each POST request for an event, we have a 5-second timeout.
+If an event cannot be sent to your endpoint, we will retry 3 times before giving up.
+
+## Security
+
+Publicly accessible webhook endpoints must be HTTPS. You can use one endpoint to handle several different event notifications at once, or set up individual endpoints for specific events.
+
+Webhooks are protected by hash signatures. Each subscription has a secret token, and each event includes a header `plexus-webhook-signature` - an HMAC hex digest of the payload calculated with the secret token using SHA512.
+
+Please remember to verify the webhook event payload using this signature. This ensures that the message is sent by Plexus Gateway and the payload is not tempered. You might also want to check the event `createdAt` to prevent replay attacks.
+
+Example Python code verifying the payload:
+
+```python
+import hmac
+import hashlib
+
+def verify_signature(payload_body, signature, secret_token):
+    return hmac.compare_digest(
+        signature,
+        hmac.new(
+            key=secret_token,
+            msg=payload_body,
+            digestmod=hashlib.sha512
+        ).hexdigest()
+    )
+```
+
+!!! info "Note"
+    Using `==` is **not recommended**, which is vulnerable to timing analysis. Please use a constant time secure comparison in your language similar to [`hamc.compare_digest`](https://docs.python.org/3/library/hmac.html#hmac.compare_digest).
