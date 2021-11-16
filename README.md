@@ -4,7 +4,7 @@
 
 This is the source code for [developer.plexus.co](https://developer.plexus.co).
 
-It uses MkDocs](https://www.mkdocs.org/) and [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/).
+It uses [MkDocs](https://www.mkdocs.org/) and [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/).
 
 GitHub Actions is configured to publish the `main` branch automatically.
 
