@@ -64,8 +64,8 @@ Each event contains additional document attributes:
 | `referenceId` | An identifier assigned to the document when it is created with an app inside Plexus Gateway. You can use this referenceId to track the document in your app or another third party system, such as SalesForce |
 | `contractValue` | The monetary value of the document that was specified when the document was created, or in the facts view tab on the document details page |
 | `latestVersion` | The latest version of the document, either published or as a draft |
-| `additionalFacts` | Additional text strings containing information added to the document in the facts view tab on the document details page |
-| `counterpartyName` | Name of the document’s counterparty.  If the document has no counterparty, this field will be null |
+| `additionalFacts` | Additional facts containing information added to the document in the facts view tab on the document details page. This is a JSON object of fact name-value pairs |
+| `counterpartyName` | Name of the document’s counterparty. If the document has no counterparty, this field will be null |
 | `publishedVersion` | The latest published version of the document |
 
 The `latestVersion` and `publishedVersion` attributes contain the following sub-attributes:
@@ -101,7 +101,7 @@ Note that although we try to maintain the status and mapping, mapping may be upd
 
 ### Bringing it all together
 
-These examples show how all document attributes are formatted in one payload for a document updated event:
+These examples show how all document attributes are formatted in one payload:
 
 === "`documentCreated`"
 
@@ -226,7 +226,7 @@ These examples show how all document attributes are formatted in one payload for
     }
     ```
 
-### Response order and built-in retries
+### Message order and built-in retries
 
 We provide a loose capability that attempts to preserve the order of messages. However, receiving messages in the exact order they are sent is not guaranteed. Use the createdAt timestamp field on all the events to determine the order.
 
@@ -235,9 +235,9 @@ If an event cannot be sent to your endpoint, we will retry 3 times before giving
 
 ## Security
 
-Publicly accessible webhook endpoints must be HTTPS. You can use one endpoint to handle several different event notifications at once, or set up individual endpoints for specific events.
+Accessible webhook endpoints must be HTTPS. You can use one endpoint to handle several different event notifications at once, or set up individual endpoints for specific events.
 
-Webhooks are protected by hash signatures. Each subscription has a secret token, and each event includes a header `plexus-webhook-signature` - an HMAC hex digest of the payload calculated with the secret token using SHA512.
+Webhooks are protected by hash signatures. Each subscription has a secret token, and each event includes a header `plexus-webhook-signature` - a HMAC hex digest of the payload calculated with the secret token using SHA512.
 
 Please remember to verify the webhook event payload using this signature. This ensures that the message is sent by Plexus Gateway and the payload is not tempered. You might also want to check the event `createdAt` to prevent replay attacks.
 
@@ -259,4 +259,5 @@ def verify_signature(payload_body, signature, secret_token):
 ```
 
 !!! info "Note"
+
     Using `==` is **not recommended**, which is vulnerable to timing analysis. Please use a constant time secure comparison in your language similar to [`hamc.compare_digest`](https://docs.python.org/3/library/hmac.html#hmac.compare_digest).
