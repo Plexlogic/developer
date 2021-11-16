@@ -226,7 +226,7 @@ These examples show how all document attributes are formatted in one payload:
 
 ### Message order and built-in retries
 
-We provide a loose capability that attempts to preserve the order of messages. However, receiving messages in the exact order they are sent is not guaranteed. Use the createdAt timestamp field on all the events to determine the order.
+We provide a loose capability that attempts to preserve the order of messages. However, receiving messages in the exact order they are sent is not guaranteed. Use the [`createdAt`](#event-created-at) timestamp on all the events to determine the order.
 
 For each POST request for an event, we have a 5-second timeout.
 If an event cannot be sent to your endpoint, we will retry 3 times before giving up.
