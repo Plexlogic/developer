@@ -6,6 +6,7 @@ theme:
   name: material
   features:
     - navigation.instant
+  favicon: images/favicon.png
   palette:
     - scheme: default
       toggle:
