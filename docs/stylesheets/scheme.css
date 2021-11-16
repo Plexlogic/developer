@@ -1,0 +1,4 @@
+[data-md-color-scheme="plexus"] {
+    --md-primary-fg-color: var(--plexus-brand-400);
+    --md-accent-fg-color: var(--plexus-brand-300);
+}

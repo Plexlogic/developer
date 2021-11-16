@@ -1,0 +1,18 @@
+:root {
+    --plexus-brand-300: #0469AF;
+    --plexus-brand-400: #008DEF; /* This is the main colour */
+    --plexus-brand-800: #D1ECFF;
+    --plexus-brand-900: #E5F5FF;
+
+    --plexus-positive-400: #00AA4E;
+    --plexus-positive-900: #D1FFE6;
+
+    --plexus-caution-400: #FCC800;
+    --plexus-caution-900: #FFF8DB;
+
+    --plexus-urgent-400: #E01500;
+    --plexus-urgent-900: #FFE3E0;
+
+    --plexus-neutral-500: #B8B8C4;
+    --plexus-neutral-900: #F3F3F4;
+}
