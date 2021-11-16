@@ -20,81 +20,97 @@ An example of the event payload:
 
 ```json
 {
-  // Event UUID
   "id": "8cfa669c-41cc-412c-858d-0374e2c007fc",
-  // Event type
   "type": "DOCUMENT_UPDATED",
-  // Event creation time, all timestamps are in ISO8601 format (UTC)
   "createdAt": "2021-11-11T22:39:59.250174+00:00",
-  // "data" section is specific to each event type
   "data": {
     // ...
   }
 }
 ```
 
+| Field | Description |
+| --- | --- |
+| `id` | Event UUID. |
+| `type` | Event type. |
+| <span id="event-created-at">`createdAt`</span> | Event creation time, all timestamps are in ISO8601 format (UTC). |
+| `data` | `data` section is specific to each event type. |
+
 ### Document event types
 
-1. `DOCUMENT_CREATED`
-2. `DOCUMENT_UPDATED`
-3. `DOCUMENT_DELETED`
+1. `documentCreated`
+2. `documentUpdated`
+3. `documentDeleted`
 
 Document event types share the same payload format.
 
 ```json
 {
   "id": "8cfa669c-41cc-412c-858d-0374e2c007fc",
-  "type": "DOCUMENT_UPDATED",
+  "type": "DocumentUpdated",
   "createdAt": "2021-11-11T22:39:59.250174+00:00",
   "data": {
     "document": {
-      // Document type
       "type": "Service Agreement",
       "title": "Service Agreement for Company A",
-      // Document status
       "status": "awaitingReview",
       "createdAt": "2021-09-02T04:37:56.812919+00:00",
-      // Application that created this document
       "sourceApp": "Approve and eSign",
-      // Start date specified in applications (e.g. Approve and eSign)
       "startDate": "2021-11-25",
-      // Executed timestamp, null means it is not executed
       "executedAt": null,
       "expiryDate": "2021-11-27T13:00:00+00:00",
-      // UUID created by Plexus Gateway
       "externalId": "d24c0644-1d31-47fa-960e-b0cc8b4f136c",
       "ownerEmail": "owner@example.com",
       "authorEmail": "author@example.com",
-      // Specified by author at creation in applications (e.g. Approve and eSign)
-      // You can use this referenceId to track the document in your system (e.g. Salesforce)
       "referenceId": null,
-      // Currency value of the contract
-      // This can be specified in applications (e.g. Approve and eSign)
-      // Currency will be an additional fact called "currency"
-      "contractValue": 0,
-      // This is the latest version that we have for this document
-      // It can be a published or draft version
+      "contractValue": 0.0,
       "latestVersion": {
         "number": "7.1",
-        // This URL is valid for 15 minutes from the event creation (`createdAt`)
-        "downloadUrl": "https://legalgateway-local.s3.amazonaws.com:443/media/documents/2499/Contract_2JS9d2q.docx"
+        "downloadUrl": "https://legalgateway-local.s3.amazonaws.com:443/media/documents/2499/Contract_2JS9d2q.docx?..."
       },
-      // Additional document facts which can be seen in the Document Facts tab on a document page
       "additionalFacts": {
         "customFact1": "abc",
         "customFact1": "123",
         "currency": "AUD"
       },
       "counterpartyName": "Company A",
-      // This is the latest published version of the document
       "publishedVersion": {
         "number": "7.0",
-        "downloadUrl": "https://legalgateway-local.s3.amazonaws.com:443/media/documents/2499/Contract_4JF72sf.docx"
+        "downloadUrl": "https://legalgateway-local.s3.amazonaws.com:443/media/documents/2499/Contract_4JF72sf.docx?..."
       }
     }
   }
 }
 ```
+
+**`document`**
+
+| Field | Description |
+| --- | --- |
+| `type` | Document type. |
+| `title` | Document title. |
+| `status` | [Document status](#document-status). |
+| `createAt` | Document creation timestamp. |
+| `sourceApp` | Application that created this document. |
+| `startDate` | Start date specified in applications (e.g. Approve and eSign). |
+| `executedAt` | Executed timestamp, null means it is not executed. |
+| `expiryDate` | TODO |
+| `externalId` | UUID created by Plexus Gateway. |
+| `ownerEmail` | Owner email. |
+| `authorEmail` | Author email. |
+| `referenceId` | Specified by author at creation in applications (e.g. Approve and eSign). You can use this referenceId to track the document in your system (e.g. Salesforce). |
+| `contractValue` | Currency value of the contract. This can be specified in applications (e.g. Approve and eSign). Currency will be an additional fact called `currency`. |
+| `latestVersion` | This is the latest version that we have for this document. It can be a published or draft version. |
+| `additionalFacts` | Additional document facts which can be seen in the Document Facts tab on a document page. |
+| `counterpartyName` | Counterparty name. |
+| `publishedVersion` | This is the latest published version of the document. |
+
+**`latestVersion` and `publishedVersion`**
+
+| Field | Description |
+| --- | --- |
+| `number` | Version number. |
+| `downloadUrl` | Download URL, valid for 15 minutes from the [event creation](#event-created-at). |
 
 #### Document status
 

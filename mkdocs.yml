@@ -4,6 +4,8 @@ site_url: https://developer.plexus.co
 
 theme:
   name: material
+  features:
+    - navigation.instant
   palette:
     - scheme: default
       toggle:
@@ -35,3 +37,9 @@ markdown_extensions:
 
 extra:
   generator: false
+
+extra_css:
+  - stylesheets/extra.css
+extra_javascript:
+- https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js
+- javascripts/tablesort.js
