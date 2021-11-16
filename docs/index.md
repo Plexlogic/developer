@@ -77,27 +77,25 @@ The `latestVersion` and `publishedVersion` attributes contain the following sub-
 
 ### Document status
 
-Webhook document event statuses are different from the statuses in Plexus Gateway. The mapping between each is shown in the table below:
+Webhook document event statuses provide you information about the current state of the document as it progresses through the document workflow:
 
-| Webhook document status | Gateway status(es) |
+| Status | Description |
 | --- | --- |
-| `created` | Authored |
-| `awaitingReview` | <ul><li>Requires review</li><li>Flagged</li><li>In review</li></ul> |
-| `reviewApproved` | Approved |
+| `created` | Document has been created |
+| `awaitingReview` | Document is awaiting a review |
+| `reviewApproved` | Review approved |
 | `reviewRejected` | Review rejected |
-| `awaitingApproval` | Awaiting approval |
-| `approved` | Completed |
-| `approvalRejected` | Approval rejected |
-| `awaitingSignature` | Awaiting signature |
-| `signedByClient` | Client signed |
-| `signatureRejected` | Signing rejected |
-| `signatureRequestExpired` | Voided |
-| `executed` | Executed |
-| `paused` | Paused |
-| `cancelled` | Cancelled |
-| `other` | <ul><li>Deleted</li><li>Amended</li><li>Updated</li><li>Other</li></ul> |
-
-Note that although we try to maintain the status and mapping, mapping may be updated in the future as part of platform improvements. If mapping does change in the future, webhook status will be maintained so your integrations will not experience any downtime. Mapping should not be relied on programmatically. 
+| `awaitingApproval` | Document at the start of the approval phase |
+| `approved` | Document approval phase completed by all approvers |
+| `approvalRejected` | Document approval phase rejected by one or more approvers |
+| `awaitingSignature` | Document at the start of the signature phase |
+| `signedByClient` | Legacy document status retained for backwards compatibility |
+| `signatureRejected` | Document sigtaure phase rejected by one or more signers |
+| `signatureRequestExpired` | Document signature phase expired |
+| `executed` | Document fully executed |
+| `paused` | Document workflow has been paused |
+| `cancelled` | Document workflow has been cancelled |
+| `other` | Legacy document statuses may result in an `other` status.  Deleted documents will have an `other` status and have an event type of `documentDeleted` |
 
 ### Bringing it all together
 
