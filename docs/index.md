@@ -95,7 +95,7 @@ Webhook document event statuses provide you information about the current state 
 | `executed` | Document fully executed |
 | `paused` | Document workflow has been paused |
 | `cancelled` | Document workflow has been cancelled |
-| `other` | Legacy document statuses may result in an `other` status.  Deleted documents will have an `other` status and have an event type of `documentDeleted` |
+| `other` | Legacy document statuses may result in an `other` status |
 
 ### Bringing it all together
 
