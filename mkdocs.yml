@@ -1,6 +1,10 @@
 site_name: Plexus Developer
 site_description: Plexus Developer Portal
 site_url: https://developer.plexus.co
+copyright: Copyright &copy; Plexus
+
+nav:
+  - 'index.md'
 
 theme:
   name: material
@@ -23,8 +27,6 @@ theme:
         name: Switch to light mode
   font:
     text: Open Sans
-
-copyright: Copyright &copy; Plexus
 
 # Strict mode, exit on warning
 strict: true

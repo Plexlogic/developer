@@ -5,32 +5,37 @@
 colors = [
     {
         'primary_color': 'var(--plexus-brand-400)',
-        'secondary_color': 'var(--plexus-brand-900)',
+        'secondary_color': 'var(--plexus-brand-400-alpha-10)',
         'types': ['note', 'abstract', 'summary', 'tldr', 'info', 'todo']
     },
     {
+        'primary_color': 'var(--plexus-brand-300)',
+        'secondary_color': 'var(--plexus-brand-300-alpha-10)',
+        'types': ['tip', 'hint', 'important']
+    },
+    {
         'primary_color': 'var(--plexus-brand-200)',
-        'secondary_color': 'var(--plexus-brand-800)',
-        'types': ['tip', 'hint', 'important', 'question', 'help', 'faq', 'example']
+        'secondary_color': 'var(--plexus-brand-200-alpha-10)',
+        'types': ['question', 'help', 'faq', 'example']
     },
     {
         'primary_color': 'var(--plexus-positive-400)',
-        'secondary_color': 'var(--plexus-positive-900)',
+        'secondary_color': 'var(--plexus-positive-400-alpha-10)',
         'types': ['success', 'check', 'done']
     },
     {
         'primary_color': 'var(--plexus-caution-400)',
-        'secondary_color': 'var(--plexus-caution-900)',
+        'secondary_color': 'var(--plexus-caution-400-alpha-10)',
         'types': ['warning', 'caution', 'attention']
     },
     {
         'primary_color': 'var(--plexus-urgent-400)',
-        'secondary_color': 'var(--plexus-urgent-900)',
+        'secondary_color': 'var(--plexus-urgent-400-alpha-10)',
         'types': ['failure', 'fail', 'missing', 'danger', 'error', 'bug']
     },
     {
         'primary_color': 'var(--plexus-neutral-500)',
-        'secondary_color': 'var(--plexus-neutral-900)',
+        'secondary_color': 'var(--plexus-neutral-500-alpha-10)',
         'types': ['quote', 'cite']
     }
 ]
@@ -47,7 +52,7 @@ Please edit that script to generate this, instead of editing this directly :)
 }}
 .md-typeset .admonition-title,
 .md-typeset summary {{
-    background-color: var(--plexus-brand-900);
+    background-color: var(--plexus-brand-400-alpha-10);
     border-color: var(--plexus-brand-400);
 }}
 .md-typeset .admonition-title::before,

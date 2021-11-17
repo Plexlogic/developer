@@ -1,18 +1,20 @@
 :root {
-    --plexus-brand-300: #0469AF;
-    --plexus-brand-400: #008DEF; /* This is the main colour */
-    --plexus-brand-800: #D1ECFF;
-    --plexus-brand-900: #E5F5FF;
+    --plexus-brand-200: rgba(3, 75, 125, 1);
+    --plexus-brand-200-alpha-10: rgba(3, 75, 125, 0.1);
+    --plexus-brand-300: rgba(4, 105, 175, 1);
+    --plexus-brand-300-alpha-10: rgba(4, 105, 175, 0.1);
+    --plexus-brand-400: rgba(0, 141, 239, 1); /* This is the main colour */
+    --plexus-brand-400-alpha-10: rgb(0, 141, 239, 0.1);
 
-    --plexus-positive-400: #00AA4E;
-    --plexus-positive-900: #D1FFE6;
+    --plexus-positive-400: rgb(0, 170, 78, 1);
+    --plexus-positive-400-alpha-10: rgb(0, 170, 78, 0.1);
 
-    --plexus-caution-400: #FCC800;
-    --plexus-caution-900: #FFF8DB;
+    --plexus-caution-400: rgba(252, 200, 0, 1);
+    --plexus-caution-400-alpha-10: rgb(252, 200, 0, 0.1);
 
-    --plexus-urgent-400: #E01500;
-    --plexus-urgent-900: #FFE3E0;
+    --plexus-urgent-400: rgb(224, 21, 0, 1);
+    --plexus-urgent-400-alpha-10: rgb(224, 21, 0, 0.1);
 
-    --plexus-neutral-500: #B8B8C4;
-    --plexus-neutral-900: #F3F3F4;
+    --plexus-neutral-500: rgb(184, 184, 196, 1);
+    --plexus-neutral-500-alpha-10: rgb(184, 184, 196, 0.1);
 }
