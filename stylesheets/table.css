@@ -1,0 +1,4 @@
+th:first-of-type code,
+td:first-of-type code {
+    word-break: normal;
+}
