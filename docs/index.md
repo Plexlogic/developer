@@ -231,31 +231,29 @@ We provide a loose capability that attempts to preserve the order of messages. H
 For each POST request for an event, we have a 5-second timeout.
 If an event cannot be sent to your endpoint, we will retry 3 times before giving up.
 
-## Security
+## Configuration and security
 
-Accessible webhook endpoints must be HTTPS. You can use one endpoint to handle several different event notifications at once, or set up individual endpoints for specific events.
+To set up webhooks, the customer support team needs the following information:
 
-Webhooks are protected by hash signatures. Each subscription has a secret token, and each event includes a header `plexus-webhook-signature` - a HMAC hex digest of the payload calculated with the secret token using SHA512.
+1. HTTPS URL(s) which events will be sent to
+1. Which events will be sent (`documentCreated`, `documentUpdated`, and/or `documentDeleted`)
+1. List of additional headers which will be passed to the URL (optional)
 
-Please remember to verify the webhook event payload using this signature. This ensures that the message is sent by Plexus Gateway and the payload is not tempered. You might also want to check the event `createdAt` to prevent replay attacks.
-
-Example Python code verifying the payload:
+For security, each webhook also has a secret token which can be used to verify events have been sent by Plexus. This is used to generate an HMAC-SHA256 signature for the payload, provided by the `plexus-webhook-signature` header. Example code to verify the signature is shown below:
 
 ```python
 import hmac
 import hashlib
 
-def verify_signature(payload_body, signature, secret_token):
-    return hmac.compare_digest(
-        signature,
-        hmac.new(
-            key=secret_token,
-            msg=payload_body,
-            digestmod=hashlib.sha512
-        ).hexdigest()
-    )
+def verify_signature(payload, headers, secret_token):
+    actual_signature = headers["plexus-webhook-signature"]
+    expected_signature = hmac.new(
+        key=secret_token,
+        msg=payload,
+        digestmod=hashlib.sha512
+    ).hexdigest()
+    
+    return hmac.compare_digest(actual_signature, expected_signature)
 ```
 
-!!! info "Note"
-
-    Using `==` is **not recommended**, which is vulnerable to timing analysis. Please use a constant time secure comparison in your language similar to [`hamc.compare_digest`](https://docs.python.org/3/library/hmac.html#hmac.compare_digest).
+For security reasons, you should avoid verifying the signature using equality operators (see [here](https://docs.python.org/3/library/hmac.html#hmac.compare_digest)). You may also want to use the event `createdAt` field to prevent replay attacks.
