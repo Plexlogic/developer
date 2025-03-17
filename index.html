@@ -1,0 +1,778 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Plexus Developer Portal">
+      
+      
+      
+        <link rel="canonical" href="https://developer.plexus.co/">
+      
+      
+      
+      <link rel="icon" href="images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.1.21">
+    
+    
+      
+        <title>Plexus Developer</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.eebd395e.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ecc896b0.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Open Sans";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/colors.css">
+    
+      <link rel="stylesheet" href="stylesheets/scheme.css">
+    
+      <link rel="stylesheet" href="stylesheets/admonition.css">
+    
+      <link rel="stylesheet" href="stylesheets/table.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="plexus" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#webhooks" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="Plexus Developer" class="md-header__button md-logo" aria-label="Plexus Developer" data-md-component="logo">
+      
+  <img src="images/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Plexus Developer
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Webhooks
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="" data-md-color-scheme="plexus" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+            
+              <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+              </label>
+            
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+            
+              <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+              </label>
+            
+          
+        </form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Plexus Developer" class="md-nav__button md-logo" aria-label="Plexus Developer" data-md-component="logo">
+      
+  <img src="images/logo.svg" alt="logo">
+
+    </a>
+    Plexus Developer
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Webhooks
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        Webhooks
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#get-started" class="md-nav__link">
+    Get started
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#events" class="md-nav__link">
+    Events
+  </a>
+  
+    <nav class="md-nav" aria-label="Events">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#document-event-types" class="md-nav__link">
+    Document event types
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#document-attributes" class="md-nav__link">
+    Document attributes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#document-status" class="md-nav__link">
+    Document status
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bringing-it-all-together" class="md-nav__link">
+    Bringing it all together
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#message-order-and-built-in-retries" class="md-nav__link">
+    Message order and built-in retries
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-and-security" class="md-nav__link">
+    Configuration and security
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="webhooks">Webhooks<a class="headerlink" href="#webhooks" title="Permanent link">&para;</a></h1>
+<p>Plexus Gateway uses webhooks to allow your application to receive information about document events as they occur. You can then choose how your application responds in a variety of ways, or use webhooks to integrate Plexus Gateway with third party systems. Update a lead in Salesforce, send a Slack notification, create a Google Calendar event or create a draft payment in Xero - our extensible framework is here to support any way of working. This documentation will detail configuring webhooks, event types and technological specifications to get you started. </p>
+<h2 id="get-started">Get started<a class="headerlink" href="#get-started" title="Permanent link">&para;</a></h2>
+<p>You can start receiving document event notifications in your app by:</p>
+<ol>
+<li>Identify the events you want to monitor and create your webhook endpoint as an HTTPS endpoint (URL)</li>
+<li>Get in touch with your Customer Success Manager</li>
+<li>Plexus will then provide you with a secret token for each subscription, or you can specify your own</li>
+</ol>
+<h2 id="events">Events<a class="headerlink" href="#events" title="Permanent link">&para;</a></h2>
+<p>You can subscribe to any number of events through webhooks. Each event is sent as a POST request to your HTTPS endpoint. </p>
+<p>Every event payload includes the following event attributes:</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>Event UUID</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td>Event type</td>
+</tr>
+<tr>
+<td><span id="event-created-at"><code>createdAt</code></span></td>
+<td>Event creation time. All timestamps are in ISO8601 format (UTC): <code>YYYY-MM-DDTHH:MM:SS.ffffff+HH:MM</code></td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td>The <code>data</code> section varies according to the type of event</td>
+</tr>
+</tbody>
+</table>
+<p>This example outlines their format and structure:</p>
+<div class="highlight"><span class="filename">Event payload example</span><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;8cfa669c-41cc-412c-858d-0374e2c007fc&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;documentUpdated&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;createdAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-11-11T22:39:59.250174+00:00&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="document-event-types">Document event types<a class="headerlink" href="#document-event-types" title="Permanent link">&para;</a></h3>
+<p>Documents have three event types, each of which will create different content in the data section of the payload:</p>
+<ol>
+<li><code>documentCreated</code></li>
+<li><code>documentUpdated</code></li>
+<li><code>documentDeleted</code></li>
+</ol>
+<h3 id="document-attributes">Document attributes<a class="headerlink" href="#document-attributes" title="Permanent link">&para;</a></h3>
+<p>Each event contains additional document attributes:</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>type</code></td>
+<td>Document type</td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td>Document title</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><a href="#document-status">Document status</a></td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td>Document creation timestamp</td>
+</tr>
+<tr>
+<td><code>sourceApp</code></td>
+<td>The app inside Plexus Gateway that created this document</td>
+</tr>
+<tr>
+<td><code>startDate</code></td>
+<td>The start date that was specified when the document was created, or in the facts view tab on the document details page</td>
+</tr>
+<tr>
+<td><code>executedAt</code></td>
+<td>The date the document was executed. If the document has not been executed, this field will be null</td>
+</tr>
+<tr>
+<td><code>expiryDate</code></td>
+<td>The expiry date that was specified when the document was created, or in the facts view tab on the document details page</td>
+</tr>
+<tr>
+<td><code>externalId</code></td>
+<td>UUID created by Plexus Gateway</td>
+</tr>
+<tr>
+<td><code>ownerEmail</code></td>
+<td>The document owner’s email address</td>
+</tr>
+<tr>
+<td><code>authorEmail</code></td>
+<td>The document author’s email address</td>
+</tr>
+<tr>
+<td><code>referenceId</code></td>
+<td>An identifier assigned to the document when it is created with an app inside Plexus Gateway. You can use this referenceId to track the document in your app or another third party system, such as SalesForce</td>
+</tr>
+<tr>
+<td><code>contractValue</code></td>
+<td>The monetary value of the document that was specified when the document was created, or in the facts view tab on the document details page</td>
+</tr>
+<tr>
+<td><code>latestVersion</code></td>
+<td>The latest version of the document, either published or as a draft</td>
+</tr>
+<tr>
+<td><code>additionalFacts</code></td>
+<td>Additional facts containing information added to the document in the facts view tab on the document details page. This is a JSON object of fact name-value pairs</td>
+</tr>
+<tr>
+<td><code>counterpartyName</code></td>
+<td>Name of the document’s counterparty. If the document has no counterparty, this field will be null</td>
+</tr>
+<tr>
+<td><code>publishedVersion</code></td>
+<td>The latest published version of the document</td>
+</tr>
+</tbody>
+</table>
+<p>The <code>latestVersion</code> and <code>publishedVersion</code> attributes contain the following sub-attributes:</p>
+<table>
+<thead>
+<tr>
+<th>Sub-attribute</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>number</code></td>
+<td>Version number</td>
+</tr>
+<tr>
+<td><code>downloadUrl</code></td>
+<td>Download URL, valid for 15 minutes from <a href="#event-created-at">event creation</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="document-status">Document status<a class="headerlink" href="#document-status" title="Permanent link">&para;</a></h3>
+<p>Webhook document event statuses provide you information about the current state of the document as it progresses through the document workflow:</p>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>created</code></td>
+<td>Document has been created</td>
+</tr>
+<tr>
+<td><code>awaitingReview</code></td>
+<td>Document is awaiting a review</td>
+</tr>
+<tr>
+<td><code>reviewApproved</code></td>
+<td>Review approved</td>
+</tr>
+<tr>
+<td><code>reviewRejected</code></td>
+<td>Review rejected</td>
+</tr>
+<tr>
+<td><code>awaitingApproval</code></td>
+<td>Document at the start of the approval phase</td>
+</tr>
+<tr>
+<td><code>approved</code></td>
+<td>Document approval phase completed by all approvers</td>
+</tr>
+<tr>
+<td><code>approvalRejected</code></td>
+<td>Document approval phase rejected by one or more approvers</td>
+</tr>
+<tr>
+<td><code>awaitingSignature</code></td>
+<td>Document at the start of the signature phase</td>
+</tr>
+<tr>
+<td><code>signedByClient</code></td>
+<td>Legacy document status retained for backwards compatibility</td>
+</tr>
+<tr>
+<td><code>signatureRejected</code></td>
+<td>Document sigtaure phase rejected by one or more signers</td>
+</tr>
+<tr>
+<td><code>signatureRequestExpired</code></td>
+<td>Document signature phase expired</td>
+</tr>
+<tr>
+<td><code>executed</code></td>
+<td>Document fully executed</td>
+</tr>
+<tr>
+<td><code>paused</code></td>
+<td>Document workflow has been paused</td>
+</tr>
+<tr>
+<td><code>cancelled</code></td>
+<td>Document workflow has been cancelled</td>
+</tr>
+<tr>
+<td><code>other</code></td>
+<td>Legacy document statuses may result in an <code>other</code> status</td>
+</tr>
+</tbody>
+</table>
+<h3 id="bringing-it-all-together">Bringing it all together<a class="headerlink" href="#bringing-it-all-together" title="Permanent link">&para;</a></h3>
+<p>These examples show how all document attributes are formatted in one payload:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1"><code>documentCreated</code></label><label for="__tabbed_1_2"><code>documentUpdated</code></label><label for="__tabbed_1_3"><code>documentDeleted</code></label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;8cfa669c-41cc-412c-858d-0374e2c007fc&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;documentCreated&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;createdAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-11-11T22:39:59.250174+00:00&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;document&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Service Agreement&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Service Agreement for Company A&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;created&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;createdAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-09-02T04:37:56.812919+00:00&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;sourceApp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Approve and eSign&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;startDate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-11-25&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;executedAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;expiryDate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-11-27T13:00:00+00:00&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;externalId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;d24c0644-1d31-47fa-960e-b0cc8b4f136c&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;ownerEmail&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;owner@example.com&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;authorEmail&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;author@example.com&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;referenceId&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;contractValue&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;latestVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;number&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;7.1&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;downloadUrl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://legalgateway-local.s3.amazonaws.com:443/media/documents/2499/Contract_2JS9d2q.docx?...&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;additionalFacts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;customFact1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;abc&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;customFact1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;123&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;currency&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;AUD&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;counterpartyName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Company A&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;publishedVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;number&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;7.0&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;downloadUrl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://legalgateway-local.s3.amazonaws.com:443/media/documents/2499/Contract_4JF72sf.docx?...&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;8cfa669c-41cc-412c-858d-0374e2c007fc&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;documentUpdated&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;createdAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-11-11T22:39:59.250174+00:00&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;document&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Service Agreement&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Service Agreement for Company A&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;awaitingReview&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;createdAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-09-02T04:37:56.812919+00:00&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;sourceApp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Approve and eSign&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;startDate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-11-25&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;executedAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;expiryDate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-11-27T13:00:00+00:00&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;externalId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;d24c0644-1d31-47fa-960e-b0cc8b4f136c&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;ownerEmail&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;owner@example.com&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;authorEmail&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;author@example.com&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;referenceId&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;contractValue&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;latestVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;number&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;7.1&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;downloadUrl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://legalgateway-local.s3.amazonaws.com:443/media/documents/2499/Contract_2JS9d2q.docx?...&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;additionalFacts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;customFact1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;abc&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;customFact1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;123&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;currency&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;AUD&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;counterpartyName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Company A&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;publishedVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;number&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;7.0&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;downloadUrl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://legalgateway-local.s3.amazonaws.com:443/media/documents/2499/Contract_4JF72sf.docx?...&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;8cfa669c-41cc-412c-858d-0374e2c007fc&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;documentDeleted&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;createdAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-11-11T22:39:59.250174+00:00&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;document&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Service Agreement&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Service Agreement for Company A&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;other&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;createdAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-09-02T04:37:56.812919+00:00&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;sourceApp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Approve and eSign&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;startDate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-11-25&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;executedAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;expiryDate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-11-27T13:00:00+00:00&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;externalId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;d24c0644-1d31-47fa-960e-b0cc8b4f136c&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;ownerEmail&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;owner@example.com&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;authorEmail&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;author@example.com&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;referenceId&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;contractValue&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;latestVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;number&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;7.1&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;downloadUrl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://legalgateway-local.s3.amazonaws.com:443/media/documents/2499/Contract_2JS9d2q.docx?...&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;additionalFacts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;customFact1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;abc&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;customFact1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;123&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;currency&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;AUD&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;counterpartyName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Company A&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;publishedVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;number&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;7.0&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;downloadUrl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://legalgateway-local.s3.amazonaws.com:443/media/documents/2499/Contract_4JF72sf.docx?...&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="message-order-and-built-in-retries">Message order and built-in retries<a class="headerlink" href="#message-order-and-built-in-retries" title="Permanent link">&para;</a></h3>
+<p>We provide a loose capability that attempts to preserve the order of messages. However, receiving messages in the exact order they are sent is not guaranteed. Use the <a href="#event-created-at"><code>createdAt</code></a> timestamp on all the events to determine the order.</p>
+<p>For each POST request for an event, we have a 5-second timeout.
+If an event cannot be sent to your endpoint, we will retry 3 times before giving up.</p>
+<h2 id="configuration-and-security">Configuration and security<a class="headerlink" href="#configuration-and-security" title="Permanent link">&para;</a></h2>
+<p>To set up webhooks, the customer support team needs the following information:</p>
+<ol>
+<li>HTTPS URL(s) which events will be sent to</li>
+<li>Which events will be sent (<code>documentCreated</code>, <code>documentUpdated</code>, and/or <code>documentDeleted</code>)</li>
+<li>List of additional headers which will be passed to the URL (optional)</li>
+</ol>
+<p>For security, each webhook also has a secret token which can be used to verify events have been sent by Plexus. This is used to generate an HMAC-SHA512 signature for the payload, provided by the <code>plexus-webhook-signature</code> header. Example code to verify the signature is shown below:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">hmac</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">verify_signature</span><span class="p">(</span><span class="n">payload</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">secret_token</span><span class="p">):</span>
+    <span class="n">actual_signature</span> <span class="o">=</span> <span class="n">headers</span><span class="p">[</span><span class="s2">&quot;plexus-webhook-signature&quot;</span><span class="p">]</span>
+    <span class="n">expected_signature</span> <span class="o">=</span> <span class="n">hmac</span><span class="o">.</span><span class="n">new</span><span class="p">(</span>
+        <span class="n">key</span><span class="o">=</span><span class="n">secret_token</span><span class="p">,</span>
+        <span class="n">msg</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span>
+        <span class="n">digestmod</span><span class="o">=</span><span class="n">hashlib</span><span class="o">.</span><span class="n">sha512</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">hmac</span><span class="o">.</span><span class="n">compare_digest</span><span class="p">(</span><span class="n">actual_signature</span><span class="p">,</span> <span class="n">expected_signature</span><span class="p">)</span>
+</code></pre></div>
+<p>For security reasons, you should avoid verifying the signature using equality operators (see <a href="https://docs.python.org/3/library/hmac.html#hmac.compare_digest">here</a>). You may also want to use the event <code>createdAt</code> field to prevent replay attacks.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; Plexus
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "content.code.annotate", "toc.integrate"], "search": "assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.220ee61c.min.js"></script>
+      
+        
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+        
+      
+        
+          <script src="javascripts/tablesort.js"></script>
+        
+      
+    
+  </body>
+</html>
