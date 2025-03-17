@@ -239,7 +239,7 @@ To set up webhooks, the customer support team needs the following information:
 1. Which events will be sent (`documentCreated`, `documentUpdated`, and/or `documentDeleted`)
 1. List of additional headers which will be passed to the URL (optional)
 
-For security, each webhook also has a secret token which can be used to verify events have been sent by Plexus. This is used to generate an HMAC-SHA256 signature for the payload, provided by the `plexus-webhook-signature` header. Example code to verify the signature is shown below:
+For security, each webhook also has a secret token which can be used to verify events have been sent by Plexus. This is used to generate an HMAC-SHA512 signature for the payload, provided by the `plexus-webhook-signature` header. Example code to verify the signature is shown below:
 
 ```python
 import hmac
