@@ -4,7 +4,8 @@ site_url: https://developer.plexus.co
 copyright: Copyright &copy; Plexus
 
 nav:
-  - 'index.md'
+  - Webhooks: 'index.md'
+  - Office Add-ins: 'office-addins/index.md'
 
 theme:
   name: material
