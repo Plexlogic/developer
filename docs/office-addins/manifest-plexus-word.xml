@@ -7,7 +7,7 @@
   xsi:type="TaskPaneApp">
 
   <Id>CA964C86-EFCE-42A7-BD9F-98C0ECE6FF0F</Id>
-  <Version>1.0.0.1</Version>
+  <Version>1.2.0.0</Version>
   <ProviderName>Plexus</ProviderName>
   <DefaultLocale>en-AU</DefaultLocale>
   <DisplayName DefaultValue="Plexus"/>
@@ -18,9 +18,11 @@
 
   <AppDomains>
     <AppDomain>https://app.legalgateway.com.au</AppDomain>
+    <AppDomain>https://apps.legalgateway.com.au</AppDomain>
     <AppDomain>https://plxs.au.auth0.com</AppDomain>
     <AppDomain>https://graph.microsoft.com</AppDomain>
     <AppDomain>https://app.plexuspromotions.com.au</AppDomain>
+    <AppDomain>https://chat-service.production.legalautomation.com</AppDomain>
   </AppDomains>
 
   <Hosts>
@@ -44,7 +46,7 @@
       <Host xsi:type="Document">
         <DesktopFormFactor>
           <ExtensionPoint xsi:type="PrimaryCommandSurface">
-            <OfficeTab id="TabHome">
+            <CustomTab id="PlexusTab">
               <Group id="PlexusGroup">
                 <Label resid="GroupLabel" />
                 <Icon>
@@ -64,12 +66,37 @@
                     <bt:Image size="80" resid="Icon.80x80" />
                   </Icon>
                   <Action xsi:type="ShowTaskpane">
-                    <TaskpaneId>ButtonId1</TaskpaneId>
+                    <TaskpaneId>PlexusTaskPane</TaskpaneId>
                     <SourceLocation resid="Taskpane.Url" />
                   </Action>
                 </Control>
               </Group>
-            </OfficeTab>
+              <Group id="PlexusActionsGroup">
+                <Label resid="ActionsGroupLabel" />
+                <Icon>
+                  <bt:Image size="16" resid="Icon.16x16" />
+                  <bt:Image size="32" resid="Icon.32x32" />
+                  <bt:Image size="80" resid="Icon.80x80" />
+                </Icon>
+                <Control xsi:type="Button" id="ReviewRedlineButton">
+                  <Label resid="ReviewRedlineButton.Label" />
+                  <Supertip>
+                    <Title resid="ReviewRedlineButton.Label" />
+                    <Description resid="ReviewRedlineButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.Redline" />
+                    <bt:Image size="32" resid="Icon.Redline" />
+                    <bt:Image size="80" resid="Icon.Redline" />
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>Office.AutoShowTaskpaneWithDocument</TaskpaneId>
+                    <SourceLocation resid="ReviewRedline.Url" />
+                  </Action>
+                </Control>
+              </Group>
+              <Label resid="PlexusTab.Label" />
+            </CustomTab>
           </ExtensionPoint>
         </DesktopFormFactor>
       </Host>
@@ -80,18 +107,23 @@
         <bt:Image id="Icon.16x16" DefaultValue="https://outlook.app.legalgateway.com.au/assets/plexus-16x16.png"/>
         <bt:Image id="Icon.32x32" DefaultValue="https://outlook.app.legalgateway.com.au/assets/plexus-32x32.png"/>
         <bt:Image id="Icon.80x80" DefaultValue="https://outlook.app.legalgateway.com.au/assets/plexus-80x80.png"/>
+        <bt:Image id="Icon.Redline" DefaultValue="https://outlook.app.legalgateway.com.au/assets/redline.png"/>
       </bt:Images>
       <bt:Urls>
         <bt:Url id="Taskpane.Url" DefaultValue="https://app.legalgateway.com.au/gateway/documents/?office_addin=true" />
+        <bt:Url id="ReviewRedline.Url" DefaultValue="https://app.legalgateway.com.au/gateway/addin/redlining/?office_addin=true" />
       </bt:Urls>
       <bt:ShortStrings>
         <bt:String id="GroupLabel" DefaultValue="Plexus" />
+        <bt:String id="ActionsGroupLabel" DefaultValue="Actions" />
+        <bt:String id="PlexusTab.Label" DefaultValue="Plexus" />
         <bt:String id="TaskpaneButton.Label" DefaultValue="Open Plexus" />
+        <bt:String id="ReviewRedlineButton.Label" DefaultValue="Review and Redline" />
       </bt:ShortStrings>
       <bt:LongStrings>
         <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Open and use Plexus from Microsoft Word." />
+        <bt:String id="ReviewRedlineButton.Tooltip" DefaultValue="Open Plexus and start reviewing and redlining this document." />
       </bt:LongStrings>
     </Resources>
   </VersionOverrides>
 </OfficeApp>
-
